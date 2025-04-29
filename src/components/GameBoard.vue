@@ -519,7 +519,7 @@ export default {
 
     async updateUserAfterGame(username, userIndex, pointsGagnes) {
       try {
-        const response = await fetch("http://localhost:3000/update", {
+        const response = await fetch(`${API}/update`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

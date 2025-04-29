@@ -52,6 +52,8 @@
 import axios from "axios";
 import { ref, computed, onMounted } from "vue";
 
+const API = import.meta.env.VITE_API_BASE_URL;
+
 const props = defineProps({
   userId: Number,
   user: Object,
@@ -97,7 +99,7 @@ const error = ref("");
 const login = async () => {
   error.value = "";
   try {
-    const res = await fetch("http://localhost:3000/login", {
+    const res = await fetch(`${API}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -123,7 +125,7 @@ const login = async () => {
 
 const updateUserData = async (username, newScore, newEmission) => {
   try {
-    const response = await axios.put("http://localhost:3000/update", {
+    const response = await axios.put(`${API}/update`, {
       username,
       newScore,
       newEmission,
@@ -147,7 +149,7 @@ const register = async () => {
     // Choix de l’avatar courant
     const selectedFilename = `img${index.value + 1}.png`;
     console.log(selectedFilename);
-    const res = await fetch("http://localhost:3000/register", {
+    const res = await fetch(`${API}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
