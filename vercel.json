@@ -1,16 +1,17 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/static-build",
-        "config": { "distDir": "dist" }
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/index.html"
-      }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    // 1) Essaie d'abord de servir un fichier existant (css, js, images…)
+    { "handle": "filesystem" },
+
+    // 2) Si rien de trouvé, on renvoie index.html (pour votre router Vue en history mode)
+    { "src": "/.*", "dest": "/index.html" }
+  ]
+}
