@@ -99,6 +99,7 @@ const error = ref("");
 const login = async () => {
   error.value = "";
   try {
+    console;
     const res = await fetch(`${API}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
